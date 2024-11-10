@@ -52,11 +52,11 @@ export default {
                             <h1 class="copy-name">  
                                 {{ level.name }}
                             </h1>
-                            <Copy v-if="!copied" @click="copyURL('https://laylist.pages.dev/#/level/' + level.path); copied = true"></Copy>
-                            <Copied v-if="copied" @click="copyURL('https://laylist.pages.dev/#/level/' + level.path); copied = true"></Copied>
+                            <Copy v-if="!copied" @click="copyURL('https://illist.pages.dev/#/level/' + level.path); copied = true"></Copy>
+                            <Copied v-if="copied" @click="copyURL('https://illist.pages.dev/#/level/' + level.path); copied = true"></Copied>
                         </div>
                     <div class="pack-container" v-if="level.packs.length > 1 || level.packs.length !== 0 && level.packs[0].levels">
-                        <a class="pack" v-for="pack in level.packs" :style="{ 'background': store.dark ? rgbaBind(darkPackColor(pack.difficulty), 0.2) : rgbaBind(lightPackColor(pack.difficulty), 0.3), 'display': !pack.levels ? 'none' : 'inherit' }" :href="'https://laylist.pages.dev/#/packs/pack/' + pack.name.toLowerCase().replaceAll(' ', '_')">{{ pack.name }}</a>
+                        <a class="pack" v-for="pack in level.packs" :style="{ 'background': store.dark ? rgbaBind(darkPackColor(pack.difficulty), 0.2) : rgbaBind(lightPackColor(pack.difficulty), 0.3), 'display': !pack.levels ? 'none' : 'inherit' }" :href="'https://illist.pages.dev/#/packs/pack/' + pack.name.toLowerCase().replaceAll(' ', '_')">{{ pack.name }}</a>
                     </div>
                     <LevelAuthors :author="level.author" :creators="level.creators" :verifier="level.verifier"></LevelAuthors>
                     <div v-if="level.showcase" class="tabs">
@@ -140,7 +140,7 @@ export default {
                         <p class="error" v-for="error of errors">{{ error }}</p>
                     </div>
                     <div class="og">
-                        <p class="type-label-md">Website layout made by <a href="https://tsl.pages.dev/" target="_blank">The Shitty List</a> and <a href="https://laylist.pages.dev/" target="_blank">The Layout List</a>.</p>
+                        <p class="type-label-md">Website layout made by <a href="https://tsl.pages.dev/" target="_blank">The Shitty List</a> and <a href="https://illist.pages.dev/" target="_blank">The Layout List</a>.</p>
                     </div>
                     <hr width="100%" color = black size="4">
                     <template v-if="staff">

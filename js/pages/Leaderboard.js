@@ -60,12 +60,12 @@ export default {
                             <h1 class="copy-name">  
                                 #{{ selected + 1 }} {{ entry.user }}
                             </h1>
-                            <Copy v-if="!copied" @click="copyURL('https://laylist.pages.dev/#/leaderboard/user/' + entry.user.toLowerCase().replaceAll(' ', '_')); copied = true"></Copy>
-                            <Copied v-if="copied" @click="copyURL('https://laylist.pages.dev/#/leaderboard/user/' + entry.user.toLowerCase().replaceAll(' ', '_')); copied = true"></Copied>
+                            <Copy v-if="!copied" @click="copyURL('https://illist.pages.dev/#/leaderboard/user/' + entry.user.toLowerCase().replaceAll(' ', '_')); copied = true"></Copy>
+                            <Copied v-if="copied" @click="copyURL('https://illist.pages.dev/#/leaderboard/user/' + entry.user.toLowerCase().replaceAll(' ', '_')); copied = true"></Copied>
                         </div>
                         <h4>{{ localize(entry.total) + " / " + localize(entry.possibleMax) }}</h4>
                         <div class="pack-container" v-if="entry.userPacks.length > 0">
-                            <a v-for="pack in entry.userPacks" class="pack" :style="{ 'background': store.dark ? rgbaBind(darkPackColor(pack.difficulty), 0.2) : rgbaBind(lightPackColor(pack.difficulty), 0.3) }" :href="'https://laylist.pages.dev/#/packs/pack/' + pack.name.toLowerCase().replaceAll(' ', '_')">{{ pack.name }} (+{{ pack.score }})</a>
+                            <a v-for="pack in entry.userPacks" class="pack" :style="{ 'background': store.dark ? rgbaBind(darkPackColor(pack.difficulty), 0.2) : rgbaBind(lightPackColor(pack.difficulty), 0.3) }" :href="'https://illist.pages.dev/#/packs/pack/' + pack.name.toLowerCase().replaceAll(' ', '_')">{{ pack.name }} (+{{ pack.score }})</a>
                         </div>
                         <h2 v-if="entry.created.length > 0">Created ({{ entry.created.length }})</h2>
                         <table class="table" v-if="entry.created.length > 0">
