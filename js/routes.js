@@ -10,16 +10,8 @@ export default [
     { path: "/", component: List },
     { path: '/level/:level', component: List },
     
-    
-    { path: "/challenges", component: ChallengeList },
-
     { path: "/leaderboard", component: Leaderboard },
     { path: "/leaderboard/user/:user", component: Leaderboard },
 
-    { path: "/challengeleaderboard", component: ChallengeLeaderboard },
-
     { path: "/roulette", component: Roulette },
-
-    { path: "/packs", component: Packs },
-    { path: "/packs/pack/:pack", component: Packs },
 ];
