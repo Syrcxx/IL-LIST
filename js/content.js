@@ -230,7 +230,7 @@ export async function fetchLeaderboard(list) {
         verified.push({
             rank,
             level: level.name,
-            score: score(rank, level.difficulty, 100, level.percentToQualify, list),
+            score: score(rank, 100, level.percentToQualify),
             link: level.verification,
         });
 
@@ -242,7 +242,7 @@ export async function fetchLeaderboard(list) {
         completed.push({
             rank,
             level: level.name,
-            score: score(rank, level.difficulty, 100, level.percentToQualify, list),
+            score: score(rank, 100, level.percentToQualify),
             link: level.verification,
             rating: level.enjoyment,
         });
@@ -269,7 +269,7 @@ export async function fetchLeaderboard(list) {
 
             if (record.percent === 100) {
 
-                completedScore += score(rank, level.difficulty, 100, level.percentToQualify, list);
+                completedScore += score(rank, 100, level.percentToQualify);
                 
 
                 // check if user has completed/verified all levels in a pack (prevents case of pack not being awarded if a player completed the first level in a pack but verified one of the other levels)
@@ -325,7 +325,7 @@ export async function fetchLeaderboard(list) {
                 return;
             }
             
-            progressedScore += score(rank, level.difficulty, record.percent, level.percentToQualify, list)
+            progressedScore += score(rank, record.percent, level.percentToQualify)
             progressed.push({
 
                 rank,
@@ -341,7 +341,7 @@ export async function fetchLeaderboard(list) {
             
         });
 
-        possibleMax += score(rank, level.difficulty, 100, level.percentToQualify, list);
+        possibleMax += score(rank, 100, level.percentToQualify);
     })
 
 
@@ -648,7 +648,7 @@ export function fetchTotalScore(list, difficulty) {
         }
 
         if (level.difficulty === difficulty) {
-            totalScore += score(level.rank, difficulty, 100, 100, list)
+            totalScore += score(level.rank, 100, 100)
         }
 
     })

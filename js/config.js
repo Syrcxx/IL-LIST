@@ -29,125 +29,30 @@ export const maxDiff = 10; // The highest difficulty number, used for some logic
 // -------------------------------------
 // Score function (levels and records):
 // -------------------------------------
-export function score(rank, difficulty, percent, minPercent, list) {
-    // There are two formulas used to calculate a level/record's score: linear and exponential.
-    //      - Linear: Used for the levels in the beginner through mythical tiers, where each
-    //        level increments an equal value from the minimum point value in the tier to
-    //        the maximum point value in the tier.
-    //      - Exponential: Used for the extreme and above tiers, where each level increments
-    //        an increasingly large value from the minimum point value of the supreme tier
-    //        to the point value of the #1 ranked level.
-
-    // EXPONENTIAL FUNCTION CONFIGURATION
-    // Change these values to edit the exponential function.
-    const maxExpScore = 750; // The maximum score given by the exponential function.
-    const minExpScore = 131; // The minimum score given by the exponential function.
-    const scoreDivider = 130 // The maximum score given by the linear function.
-    const curveBuff = 0.4; // Increase this value to steepen the curve of the exponential
-                           // function (must be greater than 0).
-    const diffDivider = 6; // The difficulty (exclusive) at which the site will stop using
-                           // the linear point system and start using the exponential one.
-    // NOTE: If you change the value of diffDivider without adding/removing cases in the
-    // switch statement below, it'll mess stuff up.
-
-    // Initializes variables used in the function
-    let score = 0;
-    let minScore = 0;
-    let maxScore = 0;
-    const tierLength = fetchTierLength(list, difficulty);
-    const tierMin = fetchTierMinimum(list, difficulty);
-    const rankInTier = rank - tierMin + tierLength;
-    
-    if (difficulty < diffDivider) { // Checks if the difficulty tier is mythical and below
-        // LINEAR FUNCTION CONFIGURATION
-        // You can change the minimum and maximum point values given for each tier here.
-
-        // A switch statement basically just tests a bunch of values against the value of
-        // the case (in this case, the value of difficulty). Read the comments in the
-        // function below for more clarification.
-        switch (difficulty) { // Set the values of minScore and maxScore based on the difficulty.
-            case 0: // If the value of difficulty is 0, do the following:
-
-                /* Beginner Tier */
-                minScore = 3;
-                maxScore = 7;
-                break; // Leave the switch statement without checking any other cases.
-            case 1: // If the value of difficulty is 1, do the following:
-
-                /* Easy Tier */
-                minScore = 7.1;
-                maxScore = 13;
-                break;
-            case 2: // etc.
-
-                /* Medium Tier */
-                minScore = 13.1;
-                maxScore = 37;
-                break;
-            case 3:
-
-                /* Hard Tier */
-                minScore = 37.1;
-                maxScore = 63;
-                break;
-            case 4:
-
-                /* Insane Tier */
-                minScore = 63.1;
-                maxScore = 87;
-                break;
-            case 5:
-
-                /* Mythical Tier */
-                minScore = 87.1;
-                maxScore = scoreDivider;
-                break;
-            default: // If none of the other cases are met, resort to this:
-
-                /* If there's a mistake */
-                break;
-        }
-
-        // Calculates the linear score
-        let decreaseAmount = (maxScore - minScore) / (tierLength - 1);
-        score = maxScore - decreaseAmount * (rankInTier - 1);
-        if (tierLength === 1) {     
-            score = maxScore;
-        }
-    } // End of linear portion
-    
-    else { // Executes this code if the previous condition wasn't true (in other words, if
-           // the difficulty tier is extreme or above).
-        
-        let expLength = fetchTierMinimum(list, diffDivider); // Gets the number of levels
-        // from the tier above diffDivider to the #1 ranked level.
-        
-        const scaleFactor = Math.log(minExpScore / maxExpScore); // Gets the scale factor
-        // for the exponential function.
-        
-        // Calculates the exponential score
-        let expScore = maxExpScore * Math.exp(scaleFactor * Math.pow((rank - 1) / (expLength - 1), curveBuff));
-        
-        // Rounds up the value of expScore to minExpScore if it's below the value of
-        // minExpScore, and rounds down the value of expScore to maxExpScore if it's above
-        // the value of maxExpScore.
-        score = Math.max(minExpScore, Math.min(expScore, maxExpScore)); 
-    } // End of exponential portion
-    
-    // Set minPercent to 100 if the difficulty tier is hard tier or below
-    if (difficulty < 4) {
-        minPercent = 100;
+export function score(rank, percent, minPercent) {
+    if (rank > 150) {
+        return 0;
     }
-    
-    // Multuplies the value of score by the factor of the difference between the value of
-    // percent and minPercent - 1, divided by the difference between 100 and the value of
-    // minPercent - 1 (note that if you c)
-    score *=((percent - (minPercent - 1)) / (100 - (minPercent - 1)));
+    if (rank > 75 && percent < 100) {
+        return 0;
+    }
 
-    // Rounds the value of score to the nearest nth decimal, where n is the value of scale.
-    score = round(score);
+    // Old formula
+    /*
+    let score = (100 / Math.sqrt((rank - 1) / 50 + 0.444444) - 50) *
+        ((percent - (minPercent - 1)) / (100 - (minPercent - 1)));
+    */
+    // New formula
+    let score = (-24.9975*Math.pow(rank-1, 0.4) + 200) *
+        ((percent - (minPercent - 1)) / (100 - (minPercent - 1)));
 
-    return score;
+    score = Math.max(0, score);
+
+    if (percent != 100) {
+        return round(score - score / 3);
+    }
+
+    return Math.max(round(score), 0);
 }
 
 // ------------------------
