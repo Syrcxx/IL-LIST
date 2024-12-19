@@ -1,0 +1,19 @@
+{
+    "id": 75286957,
+    "name": "Shukketsu",
+    "author": "zYuko",
+    "creators": [],
+    "verifier": "CheezySF",
+    "verification": "https://www.youtube.com/watch?v=0yfLfQIK5e4&ab_channel=cheezysf",
+    "percentToQualify": 100,
+    "song": "Lexycat - shukketsu（出血",
+    "records": [
+        {
+            "user": "BarGames",
+            "link": "https://www.youtube.com/watch?v=KtBsIJjYPcY&ab_channel=BarGames",
+            "percent": 100,
+            "hz": 240,
+            "mobile": false
+        }
+    ]
+}
