@@ -1,0 +1,33 @@
+{
+    "id": 88611404,
+    "name": "NEUTRA",
+    "author": "Jenkins",
+    "creators": [],
+    "verifier": "CheezySF",
+    "verification": "https://www.youtube.com/watch?v=7zjZ-VDbCSw&ab_channel=cheezysf",
+    "percentToQualify": 100,
+    "song": "Six Impala - LOVELOVELOVELOVELOVE",
+    "records": [
+        {
+            "user": "DanielTMOG",
+            "link": "https://www.youtube.com/watch?v=O9WNpoK_iiU",
+            "percent": 100,
+            "hz": 240,
+            "mobile": false
+        },
+        {
+            "user": "abb2k",
+            "link": "https://www.youtube.com/watch?v=GOnxlxVnHF8",
+            "percent": 100,
+            "hz": 240,
+            "mobile": false
+        },
+        {
+            "user": "BarGames",
+            "link": "https://www.youtube.com/watch?v=r5VU3nyUnBc",
+            "percent": 100,
+            "hz": 240,
+            "mobile": false
+        }
+    ]
+}

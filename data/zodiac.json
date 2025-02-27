@@ -1,0 +1,19 @@
+{
+    "id": 52374843,
+    "name": "zodiac",
+    "author": "bianox",
+    "creators": [],
+    "verifier": "1GMitzy",
+    "verification": "https://www.youtube.com/watch?v=_bIn1gBa2v0&ab_channel=1GMitzy",
+    "percentToQualify": 100,
+    "song": "Creo - Sphere",
+    "records": [
+        {
+            "user": "CheezySF",
+            "link": "https://www.youtube.com/watch?v=JN-tI-DYZ7U&ab_channel=cheezysf",
+            "percent": 100,
+            "hz": 240,
+            "mobile": false
+        }
+    ]
+}
